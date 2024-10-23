@@ -1,6 +1,14 @@
 'use client'
 import { useState,useEffect } from "react"
 import { Sun, CloudSun, CloudRain, Cloud, CloudLightning } from 'lucide-react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 export default function Home() {
     const [pogoda,setPogoda] = useState([])
 
@@ -29,14 +37,18 @@ export default function Home() {
             {item.list.map((item,idx)=>{
               if(idx%8==0){
                 return(
-                <div className={`${idx==0 ? 'flex flex-col flex-wrap items-center  w-full h-[200px] ':'flex flex-col flex-wrap items-center border-2 border-slate-700 w-[300px] h-[200px]'}`}  key={idx}>
-                  <h1>{(item.main.temp - 273.15).toFixed(1)}°C</h1>
-                  <h1>{item.dt_txt}</h1>
+                <Card className={`${idx==0 ? 'flex flex-col flex-wrap items-center justify-center w-full p-5 h-[200px] ':'flex flex-col flex-wrap items-center border-2 border-slate-700 p-5 w-[400px] h-[200px]'}`}  key={idx}>
+                <CardContent>
+                <h1>{(item.main.temp - 273.15).toFixed(1)}°C</h1>
+                <h1>{item.dt_txt}</h1>
                   {item.weather[0].main == "Clouds" ? <Cloud color="gray" size={50}/>:null}
                   {item.weather[0].main == "Clear" ? <Sun color="gray" size={50}/>:null}
                   {item.weather[0].main == "Rain" ? <CloudRain color="gray" size={50}/>:null}
                   <p>{item.wind.speed}m/s  |  {item.main.pressure}hPa  |  Temp Odcz: {(item.main.feels_like  - 273.15).toFixed(1)}°C  |  Wilgotność powietrza: {item.main.humidity}%</p>
-                </div>
+                </CardContent>
+                
+              </Card>
+              
                 )
               }
             })}
