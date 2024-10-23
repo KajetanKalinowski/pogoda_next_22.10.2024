@@ -32,7 +32,7 @@ export default function Home() {
             
             {news && news.map((item,idx)=>(
                     item.author?(
-                        <Card key={idx} className="border w-[450px] h-auto">
+                        <Card key={idx} className="border w-[450px] h-auto flex flex-col justify-between">
                             <CardContent className="relative w-full h-[250px] flex flex-col justify-center items-center">
                             <Image className="p-5" src={item.urlToImage ?(item.urlToImage) : (`/bruh.jpg`)} objectFit="contein" layout="fill" alt={item.title}/>
                             </CardContent>
@@ -44,8 +44,8 @@ export default function Home() {
                         <CardContent>
                           <p>{item.description}</p>
                         </CardContent>
-                        <CardFooter className="gap-10 w-full items-end justify-end">
-                          <p className="flex justify-start">{item.author}</p><Button className="float-end" asChild><Link href={item.url}>Zobacz więcej</Link></Button>
+                        <CardFooter className="gap-10 w-full flex items-end justify-end">
+                          <p className="flex justify-start">{item.author}</p><Button className="" asChild><Link href={item.url}>Zobacz więcej</Link></Button>
                         </CardFooter>
                       </Card>
                     ):("")
